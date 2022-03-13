@@ -11,15 +11,16 @@ public class GetBalancesAndFormatResponse extends AbstractResponse {
 
     private List<Input> inputs;
     private long totalBalance;
-
+    public int maxIndex;
     /**
      * Initializes a new instance of the GetBalancesAndFormatResponse class.
      */
-    public static GetBalancesAndFormatResponse create(List<Input> inputs, long totalBalance, long duration) {
+    public static GetBalancesAndFormatResponse create(List<Input> inputs, long totalBalance, long duration, int maxIndex) {
         GetBalancesAndFormatResponse res = new GetBalancesAndFormatResponse();
         res.inputs = inputs;
         res.totalBalance = totalBalance;
         res.setDuration(duration);
+        res.maxIndex=maxIndex;
         return res;
     }
 

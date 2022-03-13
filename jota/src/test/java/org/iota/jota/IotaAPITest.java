@@ -141,7 +141,7 @@ public class IotaAPITest {
     @Tag("IntegrationTest")
     public void shouldGetInputs() throws ArgumentException {
         // Address 0 should contain 1000
-        GetBalancesAndFormatResponse res = iotaAPI.getInputs(TEST_SEED1, 2, 0, 10, 0);
+        GetBalancesAndFormatResponse res = iotaAPI.getInputs("test",TEST_SEED1, 2, 0, 10, 0);
 
         assertThat("Error on getInputs should have thrown", res, IsNull.notNullValue());
         assertTrue(res.getTotalBalance() > 0, "Res should have a balance(1000)");
@@ -238,7 +238,7 @@ public class IotaAPITest {
         List<Input> inputList;
         List<Transfer> transfers = new ArrayList<>();
 
-        GetBalancesAndFormatResponse rsp = iotaAPI.getInputs(TEST_SEED1, 2, 0, 10, 0);
+        GetBalancesAndFormatResponse rsp = iotaAPI.getInputs("test",TEST_SEED1, 2, 0, 10, 0);
 
         inputList  = new ArrayList<>(rsp.getInputs());
 
@@ -420,7 +420,7 @@ public class IotaAPITest {
         List<Input> inputList = new ArrayList<>();
         List<Transfer> transfers = new ArrayList<>();
 
-        GetBalancesAndFormatResponse rsp = iotaAPI.getInputs(TEST_SEED3, 2, 0, 0, 1);
+        GetBalancesAndFormatResponse rsp = iotaAPI.getInputs("test",TEST_SEED3, 2, 0, 0, 1);
 
         inputList.addAll(rsp.getInputs());
 

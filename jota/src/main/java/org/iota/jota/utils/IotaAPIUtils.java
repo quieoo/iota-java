@@ -1,5 +1,6 @@
 package org.iota.jota.utils;
 
+import org.iota.jota.Watcher;
 import org.iota.jota.builder.AddressRequest;
 import org.iota.jota.error.ArgumentException;
 import org.iota.jota.model.Bundle;
@@ -19,7 +20,11 @@ import static org.iota.jota.utils.Constants.INVALID_SECURITY_LEVEL_INPUT_ERROR;
  *
  */
 public class IotaAPIUtils {
-
+    static String[] metricNames={"newAddress"};
+    private static Watcher watch=new Watcher(metricNames);
+    public static Watcher GetWatch(){
+        return watch;
+    }
     /**
      * Generates a new address
      *
@@ -32,7 +37,7 @@ public class IotaAPIUtils {
      * @throws ArgumentException is thrown when the specified input is not valid.
      */
     public static String newAddress(String seed, int security, int index, boolean checksum, ICurl curl) throws ArgumentException {
-
+        long start=System.nanoTime();
         if (!InputValidator.isValidSecurityLevel(security)) {
             throw new ArgumentException(INVALID_SECURITY_LEVEL_INPUT_ERROR);
         }
@@ -47,6 +52,7 @@ public class IotaAPIUtils {
         if (checksum) {
             address = Checksum.addChecksum(address);
         }
+        watch.UpdateMetric("newAddress",start);
         return address;
     }
 

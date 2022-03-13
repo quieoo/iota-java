@@ -6,6 +6,7 @@ package org.iota.jota.dto.response;
  *
  */
 public class GetNodeInfoResponse extends AbstractResponse {
+    private boolean isNodeSynchronized;
 
     /**
      * Name of the IOTA software you're currently using. (IRI stands for IOTA Reference Implementation)
@@ -168,6 +169,39 @@ public class GetNodeInfoResponse extends AbstractResponse {
         res.coordinatorAddress = coordinatorAddress;
         return res;
     }
+    public static AbstractResponse create(String appName, String appVersion, int jreAvailableProcessors, long jreFreeMemory,
+            String jreVersion, long maxMemory, long totalMemory, String latestMilestone, int latestMilestoneIndex,
+            String latestSolidSubtangleMilestone, int latestSolidSubtangleMilestoneIndex, int milestoneStartIndex,
+            int neighbors, int packetsQueueSize, long currentTimeMillis, int tips, 
+            int numberOfTransactionsToRequest,  String[] features, String coordinatorAddress, boolean sync) {
+        final GetNodeInfoResponse res = new GetNodeInfoResponse();
+        res.appName = appName;
+        res.appVersion = appVersion;
+        res.jreAvailableProcessors = jreAvailableProcessors;
+        res.jreFreeMemory = jreFreeMemory;
+        res.jreVersion = jreVersion;
+
+        res.jreMaxMemory = maxMemory;
+        res.jreTotalMemory = totalMemory;
+        res.latestMilestone = latestMilestone;
+        res.latestMilestoneIndex = latestMilestoneIndex;
+
+        res.latestSolidSubtangleMilestone = latestSolidSubtangleMilestone;
+        res.latestSolidSubtangleMilestoneIndex = latestSolidSubtangleMilestoneIndex;
+
+        res.milestoneStartIndex = milestoneStartIndex;
+
+        res.neighbors = neighbors;
+        res.packetsQueueSize = packetsQueueSize;
+        res.time = currentTimeMillis;
+        res.tips = tips;
+        res.transactionsToRequest = numberOfTransactionsToRequest;
+        
+        res.features = features;
+        res.coordinatorAddress = coordinatorAddress;
+        res.isNodeSynchronized=sync;
+        return res;
+    }
 
     /**
      * 
@@ -199,6 +233,10 @@ public class GetNodeInfoResponse extends AbstractResponse {
      */
     public long getJreFreeMemory() {
         return jreFreeMemory;
+    }
+
+    public boolean getIsNodeSynced(){
+        return this.isNodeSynchronized;
     }
 
     /**

@@ -496,7 +496,6 @@ public class IotaAPICore {
         validateAddresses(addresses);
 
         String[] addressesWithoutChecksum = removeChecksumFromAddresses(addresses);
-
         return getNodeFor(IotaAPICommand.GET_BALANCES).getBalances(IotaGetBalancesRequest.createIotaGetBalancesRequest(threshold, addressesWithoutChecksum, tips));
     }
 

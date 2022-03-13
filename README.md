@@ -27,6 +27,13 @@ Please report any issues in our [issue tracker](https://github.com/iotaledger/io
 |[Joining the discussion](#joining-the-discussion)|
 | [License](#license)
 
+## local building
+````
+   cd iota-java
+   mvn package -Dmaven.test.skip=true -Dcheckstyle.skip=true
+````
+
+
 ## Prerequisites
 
 To use the IOTA Java client library, your computer must have the following minimum requirement:
